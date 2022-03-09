@@ -96,7 +96,7 @@ namespace WordleClone
         public string testString(string input,bool isEasy) 
         {
             if(isEasy) { input = input.ToLower(); }
-            string r = "error";
+            string r = "Press Enter to Play again, \nHard Mode: " +!isEasy;
             if(input == selectedWord) { r = "You Win!"; return r; }
             else if(GuessCount > 0)
             { 
