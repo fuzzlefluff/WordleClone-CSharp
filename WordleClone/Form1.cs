@@ -128,7 +128,7 @@ namespace WordleClone
             
             if (game.isWord(r,isEasy)) 
             {
-                string s = game.testString(r);
+                string s = game.testString(r,isEasy);
                 
                 if (s == "You loose! Sorry!" || s == "You Win!") { game.setGuessCount(-1); updateAttempts(r); lockInputBoxes(true); }
                 if (s == form.winBox.Text) { newGame(isEasy); return; }

@@ -93,8 +93,9 @@ namespace WordleClone
             return GuessCount;
         }
 
-        public string testString(string input) 
+        public string testString(string input,bool isEasy) 
         {
+            if(isEasy) { input = input.ToLower(); }
             string r = "error";
             if(input == selectedWord) { r = "You Win!"; return r; }
             else if(GuessCount > 0)
