@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="easywordlist.csv" />
     <None Remove="masterwordlist.csv" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="easywordlist.csv" />
     <EmbeddedResource Include="masterwordlist.csv" />
   </ItemGroup>
 

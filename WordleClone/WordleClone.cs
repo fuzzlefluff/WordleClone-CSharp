@@ -16,20 +16,24 @@ namespace WordleClone
         private string selectedWord;
         MainForm formref;
        
-        public WordleClone(MainForm form) 
+        public WordleClone(MainForm form, bool easyWordList) 
         {
             formref = form;
             WordListFull = loadWordList();
+            if (easyWordList) { WordListFull = loadWordListEasy(); }
             wordIndex = new Random().Next(0, WordListFull.Count);
             selectedWord = WordListFull[wordIndex];
+            selectedWord = selectedWord.ToUpper();
             Console.WriteLine("Selected Word: " + selectedWord);
         }
-       public WordleClone(MainForm form, int wordIndexInp) 
+       public WordleClone(MainForm form, int wordIndexInp, bool easyWordList) 
         {
             formref = form;
             WordListFull = loadWordList();
+            if (easyWordList) { WordListFull = loadWordListEasy(); }
             wordIndex = wordIndexInp;
             selectedWord = WordListFull[wordIndex];
+            selectedWord = selectedWord.ToUpper();
             Console.WriteLine("Selected Word: " + selectedWord);
         }
 
@@ -102,16 +106,17 @@ namespace WordleClone
             return r;
         }
 
-        public bool isWord(string i) 
+        public bool isWord(string i, bool isEasy) 
         {
             bool r = true;
             i = formatString(i);
-            if(!WordListFull.Contains(i)) { r = false; }
+            if (isEasy) { i = i.ToLower(); }
+            if (!WordListFull.Contains(i)) { r = false; }
 
             return r;
         }
 
-        static string takeInput(List<string> WordListFull)
+        string takeInput(List<string> WordListFull)
         {
             string input = "";
             Boolean acceptableInp = false;
@@ -158,6 +163,23 @@ namespace WordleClone
             List<string> WordList = new List<string>();
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
             var resourceName = "WordleClone.masterwordlist.csv";
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (var reader = new StreamReader(stream))
+            {
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    WordList.Add(line);
+                }
+            }
+            Console.WriteLine("Loaded " + WordList.Count + " Words from master list!");
+            return WordList;
+        }
+        static public List<string> loadWordListEasy()
+        {
+            List<string> WordList = new List<string>();
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            var resourceName = "WordleClone.easywordlist.csv";
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             using (var reader = new StreamReader(stream))
             {

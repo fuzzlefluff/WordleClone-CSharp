@@ -14,11 +14,13 @@ namespace WordleClone
     {
         WordleClone game;
         private static MainForm form;
-        
+        private static bool isEasy = true;
+
         public MainForm()
         {
             InitializeComponent();
             form = this;
+            
             
             //setup listen events
             character1.KeyPress += character1_Key;
@@ -96,12 +98,13 @@ namespace WordleClone
             letterboxY.SelectionAlignment = HorizontalAlignment.Center;
             letterboxZ.SelectionAlignment = HorizontalAlignment.Center;
 
-            newGame();
+            newGame(isEasy);
         }
 
         private void newgameBtn_Click(object sender, EventArgs e)
         {
-            newGame();
+            isEasy = true;
+            newGame(isEasy);
         }
 
         private void lockInputBoxes(bool lockInput) 
@@ -123,12 +126,12 @@ namespace WordleClone
             r += character5.Text;
 
             
-            if (game.isWord(r)) 
+            if (game.isWord(r,isEasy)) 
             {
                 string s = game.testString(r);
                 
                 if (s == "You loose! Sorry!" || s == "You Win!") { game.setGuessCount(-1); updateAttempts(r); lockInputBoxes(true); }
-                if (s == form.winBox.Text) { newGame(); return; }
+                if (s == form.winBox.Text) { newGame(isEasy); return; }
                 form.winBox.Text = s;
                 form.winBox.ForeColor = Color.White;
                 updateAttempts(r);
@@ -691,9 +694,9 @@ namespace WordleClone
             updateLetter("Y", 0);
             updateLetter("Z", 0);
         }
-        private void newGame() 
+        private void newGame(bool isEasy) 
         {
-            game = new(form);
+            game = new(form,isEasy);
             this.cheatTxtB.Text = game.giveCheatString();
             character1.Text = "";
             character2.Text = "";
@@ -708,9 +711,9 @@ namespace WordleClone
             
         }
 
-        private void newGame(int wordIndex) 
+        private void newGame(int wordIndex,bool isEasy) 
         {
-            game = new(form,wordIndex);
+            game = new(form,wordIndex,isEasy);
             this.cheatTxtB.Text = game.giveCheatString();
             character1.Text = "";
             character2.Text = "";
@@ -826,6 +829,12 @@ namespace WordleClone
         private void character5_TextChanged(object sender, EventArgs e)
         {
             character5.Text = character5.Text.ToUpper();
+        }
+
+        private void btnNewGameHard_Click(object sender, EventArgs e)
+        {
+            isEasy = false;
+            newGame(isEasy);
         }
     }
 }

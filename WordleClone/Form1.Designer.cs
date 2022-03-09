@@ -105,6 +105,7 @@ namespace WordleClone
             this.entry6Char1 = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cheatBtn = new System.Windows.Forms.Button();
+            this.btnNewGameHard = new System.Windows.Forms.Button();
             this.Keyboard.SuspendLayout();
             this.inputPannel.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -129,7 +130,7 @@ namespace WordleClone
             // 
             this.newgameBtn.BackColor = System.Drawing.Color.Black;
             this.newgameBtn.ForeColor = System.Drawing.Color.White;
-            this.newgameBtn.Location = new System.Drawing.Point(568, 60);
+            this.newgameBtn.Location = new System.Drawing.Point(568, 23);
             this.newgameBtn.Name = "newgameBtn";
             this.newgameBtn.Size = new System.Drawing.Size(94, 29);
             this.newgameBtn.TabIndex = 1;
@@ -1345,12 +1346,25 @@ namespace WordleClone
             this.cheatBtn.Text = "Guess";
             this.cheatBtn.UseVisualStyleBackColor = false;
             // 
+            // btnNewGameHard
+            // 
+            this.btnNewGameHard.BackColor = System.Drawing.Color.Black;
+            this.btnNewGameHard.ForeColor = System.Drawing.Color.Red;
+            this.btnNewGameHard.Location = new System.Drawing.Point(551, 58);
+            this.btnNewGameHard.Name = "btnNewGameHard";
+            this.btnNewGameHard.Size = new System.Drawing.Size(125, 55);
+            this.btnNewGameHard.TabIndex = 48;
+            this.btnNewGameHard.Text = "New Word (Hard)";
+            this.btnNewGameHard.UseVisualStyleBackColor = false;
+            this.btnNewGameHard.Click += new System.EventHandler(this.btnNewGameHard_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(683, 895);
+            this.Controls.Add(this.btnNewGameHard);
             this.Controls.Add(this.cheatBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel6);
@@ -1459,6 +1473,7 @@ namespace WordleClone
         private System.Windows.Forms.RichTextBox letterboxC;
         private System.Windows.Forms.RichTextBox letterboxB;
         private System.Windows.Forms.Button cheatBtn;
+        private System.Windows.Forms.Button btnNewGameHard;
     }
 }
 
