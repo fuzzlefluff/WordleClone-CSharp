@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="masterwordlist.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="masterwordlist.csv" />
+  </ItemGroup>
+
+</Project>
